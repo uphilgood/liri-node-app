@@ -44,11 +44,12 @@ if (argument === "my-tweets") {
     });
 }
 
-// client.post('statuses/update', {status: 'I am a tweet'}, function(error, tweet, response) {
-//     if (!error) {
-//       console.log(tweet);
-//     }
-//   });
+if (argument === "tweet")
+client.post('statuses/update', {status: title}, function(error, tweet, response) {
+    if (!error) {
+      console.log(tweet);
+    }
+  });
 
 
 
