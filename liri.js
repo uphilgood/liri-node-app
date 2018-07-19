@@ -51,7 +51,6 @@ if (argument === "movie-this") {
 
 }
 
-
 if (argument === "spotify-this-song") {
     spotify.search({
         type: 'track',
