@@ -18,13 +18,13 @@ omdb = (search, key) => {
     request.get('http://www.omdbapi.com/?t=' + search + '&apikey=' + key, function (error, response, body) {
         if (!error) {
             let data = JSON.parse(body)
-            console.log("Title: " + data.Title + "\nRelease Date:: " + data.Year+
-            "\nIMDB Rating: " + data.imdbRating + "\nRotten Tomatoes Rating: " + data.Ratings[1].Value + "\nCountry: " + data.Country 
-            + "\nLanguage: " + data.Language + "\nPlot: " + data.Plot + "\nActors: " + data.Actors);
+            console.log("Title: " + data.Title + "\nRelease Date:: " + data.Year +
+                "\nIMDB Rating: " + data.imdbRating + "\nRotten Tomatoes Rating: " + data.Ratings[1].Value + "\nCountry: " + data.Country +
+                "\nLanguage: " + data.Language + "\nPlot: " + data.Plot + "\nActors: " + data.Actors);
             append(data.Title)
             append(data.Year)
             append(data.imdbRating)
-            append(data.Ratings[1].Value )
+            append(data.Ratings[1].Value)
             append(data.Country)
             append(data.Language)
             append(data.Plot)
@@ -39,8 +39,7 @@ getTweets = params => {
             tweets.forEach(tweet => {
                 console.log(tweet.text + tweet.created_at)
                 append(tweet.text + tweet.created_at)
-            }
-            );
+            });
         }
     });
 }
@@ -54,11 +53,10 @@ searchTrack = title => {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-        //gives artist name
         let songData = data.tracks.items
         songData.forEach(song => {
             console.log("Name: " + song.artists[0].name + "\nSong Name: " + song.name +
-            "\nSong URL: " + song.artists[0].external_urls.spotify + "\nAlbum Name: " + song.album.name);
+                "\nSong URL: " + song.artists[0].external_urls.spotify + "\nAlbum Name: " + song.album.name);
             append(song.artists[0].name)
             append(song.name)
             append(song.artists[0].external_urls.spotify)
@@ -79,17 +77,15 @@ postTweet = message => {
 
 randomFile = () => {
     fs.readFile("random.txt", "utf8", function (error, data) {
-        // If the code experiences any errors it will log the error to the console.
         if (error) {
             return console.log(error);
         }
-        // Then split it by commas (to make it more readable)
         let dataArr = data.split(",");
-       searchTrack(dataArr[1])
+        searchTrack(dataArr[1])
     });
 }
 
-append = (arg) => {
+append = arg => {
     fs.appendFile("log.txt", "\n" + arg, function (err) {
         if (err) {
             console.log(err);
@@ -101,12 +97,11 @@ if (argument === "movie-this" && title) {
     omdb(title, omdbKey)
 } else if (argument === "movie-this") {
     omdb("Mr. Nobody", omdbKey)
-
 }
 
 if (argument === "spotify-this-song") {
     searchTrack(title);
-} 
+}
 
 if (argument === "my-tweets") {
     getTweets(params);
@@ -119,4 +114,3 @@ if (argument === "tweet") {
 if (argument === "do-what-it-says") {
     randomFile();
 }
-
