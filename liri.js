@@ -99,8 +99,10 @@ if (argument === "movie-this" && title) {
     omdb("Mr. Nobody", omdbKey)
 }
 
-if (argument === "spotify-this-song") {
+if (argument === "spotify-this-song" && title) {
     searchTrack(title);
+} else if (argument === "spotify-this-song") {
+    searchTrack("The Sign");
 }
 
 if (argument === "my-tweets") {
